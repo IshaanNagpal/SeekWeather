@@ -1,0 +1,23 @@
+package com.spdigital.seekweather.model.weather
+
+
+import com.google.gson.annotations.SerializedName
+import androidx.annotation.Keep
+
+@Keep
+data class Month(
+    @SerializedName("absMaxTemp")
+    val absMaxTemp: String? = "",
+    @SerializedName("absMaxTemp_F")
+    val absMaxTempF: String? = "",
+    @SerializedName("avgDailyRainfall")
+    val avgDailyRainfall: String? = "",
+    @SerializedName("avgMinTemp")
+    val avgMinTemp: String? = "",
+    @SerializedName("avgMinTemp_F")
+    val avgMinTempF: String? = "",
+    @SerializedName("index")
+    val index: String? = "",
+    @SerializedName("name")
+    val name: String? = ""
+)
