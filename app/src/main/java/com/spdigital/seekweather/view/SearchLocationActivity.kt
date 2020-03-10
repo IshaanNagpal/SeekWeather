@@ -56,10 +56,7 @@ class SearchLocationActivity : BaseActivity() {
     private fun configureRecyclerView() {
         location_recyclerview.layoutManager = LinearLayoutManager(this)
         location_recyclerview.addItemDecoration(
-            DividerItemDecoration(
-                location_recyclerview.context,
-                OrientationHelper.VERTICAL
-            )
+            DividerItemDecoration(location_recyclerview.context, OrientationHelper.VERTICAL)
         )
     }
 

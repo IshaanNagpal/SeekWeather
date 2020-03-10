@@ -18,6 +18,8 @@
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         android:padding="16dp"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackground"
         tools:context=".views.ReposListActivity">
 
         <TextView
