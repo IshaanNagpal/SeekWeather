@@ -3,6 +3,7 @@ package com.spdigital.seekweather.usecase
 import com.spdigital.seekweather.network.Resource
 import com.spdigital.seekweather.model.search.LocationModel
 import com.spdigital.seekweather.model.search.LocationRequestData
+import com.spdigital.seekweather.model.search.ResultModel
 import com.spdigital.seekweather.model.search.SearchApi
 import com.spdigital.seekweather.repository.LocationRepositoryImpl
 import com.spdigital.seekweather.view.ListItemModel
@@ -13,11 +14,11 @@ class LocationUseCaseImpl(private val locationRepositoryImpl: LocationRepository
         return locationRepositoryImpl.fetchLocation(LocationRequestData(query ?:""))
     }
 
-    override fun mapToListItem(searchApi: SearchApi): List<ListItemModel> {
+    override fun mapToListItem(searchApi: SearchApi, itemClickCallback: (ResultModel?) -> Unit): List<ListItemModel> {
         val locationsItemViewList = mutableListOf<ListItemModel>()
-        searchApi.result.let {
+        searchApi.resultModel.let {
             it?.map { result ->
-                locationsItemViewList.add(SearchLocationItemView(result)) }
+                locationsItemViewList.add(SearchLocationItemView(result, itemClickCallback)) }
         }
         return locationsItemViewList
     }

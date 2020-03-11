@@ -1,5 +1,6 @@
 package com.spdigital.seekweather.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -29,9 +30,19 @@ class SearchLocationActivity : BaseActivity() {
     }
 
     private fun observeForViewModel() {
-        searchLocationViewModelImpl.observeForLiveData().observe(this, Observer {
+        searchLocationViewModelImpl.observeForLocationsList().observe(this, Observer {
             setDataOnList(it)
         })
+
+        searchLocationViewModelImpl.observeForNavigator().observe(this, Observer {
+            navigateToDetailActivity(it)
+        })
+    }
+
+    private fun navigateToDetailActivity(location: String) {
+        val intent = Intent(this, WeatherDetailActivity::class.java)
+//        intent.putExtra("CITY", location)
+        startActivity(intent)
     }
 
     private fun configureBinding() {

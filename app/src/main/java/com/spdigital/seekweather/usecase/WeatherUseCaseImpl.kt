@@ -1,12 +1,12 @@
 package com.spdigital.seekweather.usecase
 
-import com.spdigital.seekweather.network.Resource
-import com.spdigital.seekweather.model.weather.WeatherDataModel
+import com.spdigital.seekweather.model.weather.CurrentWeatherResponse
 import com.spdigital.seekweather.model.weather.WeatherRequestData
-import com.spdigital.seekweather.repository.WeatherDetailRepository
+import com.spdigital.seekweather.network.Resource
+import com.spdigital.seekweather.repository.WeatherDetailRepositoryImpl
 
-class WeatherUseCaseImpl(private val repository: WeatherDetailRepository): WeatherUseCase {
-    override fun getWeatherData(): Resource<WeatherDataModel> {
-        return repository.fetchWeather(WeatherRequestData())
+class WeatherUseCaseImpl(private val repository: WeatherDetailRepositoryImpl): WeatherUseCase {
+    override suspend fun getWeatherData(location: String): Resource<CurrentWeatherResponse> {
+        return repository.fetchWeather(WeatherRequestData(location))
     }
 }

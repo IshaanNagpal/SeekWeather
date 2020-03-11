@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.spdigital.seekweather.view.ListItemModel
 
 interface SearchLocationViewModel {
-    fun observeForLiveData(): MutableLiveData<List<ListItemModel>>
+    fun observeForLocationsList(): MutableLiveData<List<ListItemModel>>
+    fun observeForNavigator(): MutableLiveData<String>
     fun getSearchedLocation(newText: String?)
 }
