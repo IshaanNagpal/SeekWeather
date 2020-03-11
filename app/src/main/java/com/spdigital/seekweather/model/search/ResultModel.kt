@@ -9,7 +9,7 @@ import com.spdigital.seekweather.model.search.Country
 import com.spdigital.seekweather.model.search.WeatherUrl
 
 @Keep
-data class Result(
+data class ResultModel(
     @SerializedName("areaName")
     val areaName: List<AreaName?>? = listOf(),
     @SerializedName("country")

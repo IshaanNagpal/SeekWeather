@@ -7,5 +7,5 @@ import androidx.annotation.Keep
 @Keep
 data class SearchApi(
     @SerializedName("result")
-    val result: List<Result?>? = listOf()
+    val resultModel: List<ResultModel?>? = listOf()
 )
