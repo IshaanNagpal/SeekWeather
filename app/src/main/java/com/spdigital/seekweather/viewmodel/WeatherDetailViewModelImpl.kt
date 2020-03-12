@@ -4,6 +4,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.sample.gitrepos.extensions.filterNull
 import com.spdigital.seekweather.extensions.toSingleEvent
 import com.spdigital.seekweather.model.weather.WeatherDataModel
 import com.spdigital.seekweather.network.Resource
@@ -31,7 +32,11 @@ class WeatherDetailViewModelImpl(private val useCaseImpl: WeatherUseCaseImpl) : 
             when (weatherResource.status) {
                 Resource.Status.SUCCESS -> {
                     locationName.set(location)
-//                    weather.set(weatherResource.data?.data?.currentCondition?.get(0)?.weatherDesc?.get(0)?.value)
+                    val currentCondition = weatherResource.data?.data?.currentCondition?.get(0)
+                    weather.set(currentCondition?.weatherDesc?.get(0)?.value.filterNull())
+                    tempInCelcius.set(currentCondition?.tempC.filterNull()+" degree Celcius")
+                    tempInFahreneits.set(currentCondition?.tempF.filterNull()+ "degree Fahreneits")
+                    humidity.set(currentCondition?.humidity.filterNull()+"% Humidity")
                 }
                 Resource.Status.ERROR -> {
                 }

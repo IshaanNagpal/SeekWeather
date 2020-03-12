@@ -14,7 +14,7 @@ class SearchLocationItemView(
 
     private fun getFormattedLocation(): String {
 
-        var strBuilder = StringBuilder()
+        val strBuilder = StringBuilder()
         if(resultModel?.areaName?.get(0)?.value.filterNull().trim().isNotEmpty()) {
             strBuilder.append(resultModel?.areaName?.get(0)?.value)
         }
@@ -24,7 +24,6 @@ class SearchLocationItemView(
         if(resultModel?.country?.get(0)?.value.filterNull().trim().isNotEmpty()) {
             strBuilder.append(", " + resultModel?.country?.get(0)?.value)
         }
-
         return strBuilder.toString()
     }
 

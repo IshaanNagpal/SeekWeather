@@ -41,7 +41,7 @@ class SearchLocationActivity : BaseActivity() {
 
     private fun navigateToDetailActivity(location: String) {
         val intent = Intent(this, WeatherDetailActivity::class.java)
-//        intent.putExtra("CITY", location)
+        intent.putExtra("CITY", location)
         startActivity(intent)
     }
 

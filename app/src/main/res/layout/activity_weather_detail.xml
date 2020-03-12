@@ -34,9 +34,9 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@{viewmodel.locationName}"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="@{viewmodel.locationName}"
                     tools:text="Location Name" />
 
                 <View
@@ -54,8 +54,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:textSize="16sp"
                     android:text="@{viewmodel.weather}"
+                    android:textSize="16sp"
                     tools:text="Cloudy " />
 
                 <View
@@ -68,6 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:text="@{viewmodel.tempInCelcius}"
                     android:textSize="16sp"
                     tools:text="18 degrees celcius" />
 
@@ -75,6 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:text="@{viewmodel.tempInFahreneits}"
                     android:textSize="16sp"
                     tools:text="36 degrees fahrenheits" />
 
@@ -89,8 +91,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:textSize="16sp"
-                    tools:text="90% humidity" />
+                    android:text="@{viewmodel.humidity}"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
