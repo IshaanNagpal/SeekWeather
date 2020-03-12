@@ -2,6 +2,7 @@ package com.spdigital.seekweather.view
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.sample.gitrepos.extensions.filterNull
 import com.spdigital.seekweather.R
 import com.spdigital.seekweather.databinding.ActivityWeatherDetailBinding
 import com.spdigital.seekweather.viewmodel.WeatherDetailViewModelImpl
@@ -18,6 +19,6 @@ class WeatherDetailActivity : BaseActivity() {
         mBinding.viewmodel = weatherDetailViewModelImpl
         mBinding.lifecycleOwner = this
 
-        weatherDetailViewModelImpl.getWeatherDetails("New York")
+        weatherDetailViewModelImpl.getWeatherDetails(intent?.getStringExtra("CITY").filterNull())
     }
 }

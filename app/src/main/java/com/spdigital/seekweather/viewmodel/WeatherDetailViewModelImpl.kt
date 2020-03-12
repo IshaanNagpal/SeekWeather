@@ -1,5 +1,6 @@
 package com.spdigital.seekweather.viewmodel
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,11 +15,11 @@ import kotlinx.coroutines.launch
 class WeatherDetailViewModelImpl(private val useCaseImpl: WeatherUseCaseImpl) : BaseViewModel(),
     WeatherDetailViewModel {
 
-    lateinit var locationName: String
-    lateinit var weather: String
-    lateinit var tempInCelcius: String
-    lateinit var tempInFahreneits: String
-    lateinit var humidity: String
+    var locationName = ObservableField<String>()
+    var weather = ObservableField<String>()
+    var tempInCelcius = ObservableField<String>()
+    var tempInFahreneits = ObservableField<String>()
+    var humidity = ObservableField<String>()
 
     private val currentWeatherLiveData by lazy { MutableLiveData<List<ListItemModel>>().toSingleEvent() }
 
@@ -29,6 +30,8 @@ class WeatherDetailViewModelImpl(private val useCaseImpl: WeatherUseCaseImpl) : 
 
             when (weatherResource.status) {
                 Resource.Status.SUCCESS -> {
+                    locationName.set(location)
+//                    weather.set(weatherResource.data?.data?.currentCondition?.get(0)?.weatherDesc?.get(0)?.value)
                 }
                 Resource.Status.ERROR -> {
                 }

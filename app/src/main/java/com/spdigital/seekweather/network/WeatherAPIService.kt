@@ -11,13 +11,11 @@ import retrofit2.http.Query
 interface WeatherAPIService {
 
     @GET("search.ashx")
-    fun fetchLocation(@Query("key") key: String, @Query("format") format: String, @Query("query") query: String): Deferred<Response<LocationModel>>
+    fun fetchLocationAsync(@Query("key") key: String, @Query("format") format: String, @Query("query") query: String):
+            Deferred<Response<LocationModel>>
 
-    @GET("search.ashx")
-    fun fetchcurrentWeather(
-        key: String,
-        format: String,
-        q: String,
-        date: String
-    ): Deferred<Response<CurrentWeatherResponse>>
+    @GET("weather.ashx")
+    fun fetchcurrentWeatherAsync(
+        @Query("key") key: String, @Query("format") format: String, @Query("q")location: String, @Query("date")date: String):
+            Deferred<Response<CurrentWeatherResponse>>
 }

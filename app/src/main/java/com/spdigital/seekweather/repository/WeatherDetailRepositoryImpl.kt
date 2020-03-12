@@ -8,7 +8,7 @@ import com.spdigital.seekweather.network.WeatherAPIService
 class WeatherDetailRepositoryImpl(private val weatherAPIService: WeatherAPIService) : BaseRepository(), WeatherDetailRepository {
     override suspend fun fetchWeather(weatherRequestData: WeatherRequestData): Resource<CurrentWeatherResponse> {
         return safeApiCall(call = {
-            weatherAPIService.fetchcurrentWeather(weatherRequestData.key, weatherRequestData.format, weatherRequestData.q, weatherRequestData.date).await()
+            weatherAPIService.fetchcurrentWeatherAsync(weatherRequestData.key, weatherRequestData.format, weatherRequestData.q, weatherRequestData.date).await()
         })
     }
 }
