@@ -37,7 +37,7 @@ class SearchLocationViewModelImpl(private val locationUseCaseImpl: LocationUseCa
                     if (locationModel.searchApi == null) {
                         setError()
                     } else {
-                        val mapToListItem = locationUseCaseImpl.mapToListItem(locationModel.searchApi?.resultModel, getItemClickCallback()
+                        val mapToListItem = locationUseCaseImpl.mapToItemViewList(locationModel.searchApi?.resultModel, getItemClickCallback()
                         )
                         locationsLiveData.value = mapToListItem
                         setSuccess()

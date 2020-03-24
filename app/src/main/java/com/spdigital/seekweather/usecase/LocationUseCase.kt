@@ -8,7 +8,7 @@ import com.spdigital.seekweather.view.ListItemModel
 
 interface LocationUseCase {
     suspend fun getLocation(query: String?): Resource<LocationModel>
-    suspend fun mapToListItem(searchApi: List<ResultModel?>?, itemClickCallback: (LocationEntity?) -> Unit): List<ListItemModel>
+    suspend fun mapToItemViewList(results: List<ResultModel?>?, itemClickCallback: (LocationEntity?) -> Unit): List<ListItemModel>
     suspend fun saveLocationToLocalCache(resultModel: LocationEntity)
     suspend fun getSortedRecentlySearchedLocations(): List<LocationEntity>
     suspend fun mapRecentlySearchedLocationToListItem(locations: List<LocationEntity>?, itemClickCallback: (LocationEntity?) -> Unit): List<ListItemModel>

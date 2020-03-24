@@ -17,7 +17,7 @@ class LocationUseCaseImpl(private val locationRepositoryImpl: LocationRepository
         return locationRepositoryImpl.fetchLocation(LocationRequestData(query ?:""))
     }
 
-    override suspend fun mapToListItem(results: List<ResultModel?>?, itemClickCallback: (LocationEntity?) -> Unit): List<ListItemModel> {
+    override suspend fun mapToItemViewList(results: List<ResultModel?>?, itemClickCallback: (LocationEntity?) -> Unit): List<ListItemModel> {
         val locationsItemViewList = mutableListOf<ListItemModel>()
         results.let {
             it?.map { result ->
