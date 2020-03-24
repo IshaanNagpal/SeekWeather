@@ -18,5 +18,4 @@ class LocationDaoHandlerImpl(private val locationsDao: LocationsDao) : SearchLoc
         }
     }
 
-
 }

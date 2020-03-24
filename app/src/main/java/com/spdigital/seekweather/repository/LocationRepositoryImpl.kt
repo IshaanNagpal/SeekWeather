@@ -9,7 +9,7 @@ import com.spdigital.seekweather.network.WeatherAPIService
 import com.spdigital.seekweather.persistence.LocationDaoHandlerImpl
 import com.spdigital.seekweather.persistence.SearchLocationDaoHandler
 
-class LocationRepositoryImpl(private val weatherAPIService: WeatherAPIService, private val locationDaoHandler: LocationDaoHandlerImpl): BaseRepository(), LocationRepository {
+class LocationRepositoryImpl(private val weatherAPIService: WeatherAPIService, private val locationDaoHandlerImpl: LocationDaoHandlerImpl): BaseRepository(), LocationRepository {
     override suspend fun fetchLocation(locationRequestData: LocationRequestData): Resource<LocationModel> {
         return safeApiCall(call = {
         weatherAPIService.fetchLocationAsync(locationRequestData.key, locationRequestData.format, locationRequestData.query).await()
@@ -17,10 +17,10 @@ class LocationRepositoryImpl(private val weatherAPIService: WeatherAPIService, p
     }
 
     override suspend fun cacheSearchResult(locations: List<LocationEntity>) {
-        locationDaoHandler.addLocationsIntoDB(locations)
+        locationDaoHandlerImpl.addLocationsIntoDB(locations)
     }
 
     override suspend fun getCachedLocations(): MutableList<LocationEntity> {
-        return locationDaoHandler.getLocationsFromDB()
+        return locationDaoHandlerImpl.getLocationsFromDB()
     }
 }

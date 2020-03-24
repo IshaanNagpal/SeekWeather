@@ -1,7 +1,10 @@
 package com.spdigital.seekweather.usecase
 
 import com.spdigital.seekweather.extensions.getLocationEntity
-import com.spdigital.seekweather.model.search.*
+import com.spdigital.seekweather.model.search.LocationEntity
+import com.spdigital.seekweather.model.search.LocationModel
+import com.spdigital.seekweather.model.search.LocationRequestData
+import com.spdigital.seekweather.model.search.ResultModel
 import com.spdigital.seekweather.network.Resource
 import com.spdigital.seekweather.repository.LocationRepositoryImpl
 import com.spdigital.seekweather.utility.CACHE_SIZE
@@ -14,9 +17,9 @@ class LocationUseCaseImpl(private val locationRepositoryImpl: LocationRepository
         return locationRepositoryImpl.fetchLocation(LocationRequestData(query ?:""))
     }
 
-    override suspend fun mapToListItem(searchApi: SearchApi, itemClickCallback: (LocationEntity?) -> Unit): List<ListItemModel> {
+    override suspend fun mapToListItem(results: List<ResultModel?>?, itemClickCallback: (LocationEntity?) -> Unit): List<ListItemModel> {
         val locationsItemViewList = mutableListOf<ListItemModel>()
-        searchApi.resultModel.let {
+        results.let {
             it?.map { result ->
                 locationsItemViewList.add(SearchLocationItemView(result.getLocationEntity(), itemClickCallback)) }
         }
@@ -33,13 +36,18 @@ class LocationUseCaseImpl(private val locationRepositoryImpl: LocationRepository
         locationRepositoryImpl.cacheSearchResult(cachedLocations)
     }
 
-    override suspend fun getRecentlySearchedLocations(): List<LocationEntity> {
-        return locationRepositoryImpl.getCachedLocations()
+    override suspend fun getSortedRecentlySearchedLocations(): List<LocationEntity> {
+        val list = locationRepositoryImpl.getCachedLocations()
+        list.sortByDescending {
+            it.time
+        }
+
+        return list
     }
 
     override suspend fun mapRecentlySearchedLocationToListItem(locations: List<LocationEntity>?, itemClickCallback: (LocationEntity?) -> Unit): List<ListItemModel> {
         val locationsItemViewList = mutableListOf<ListItemModel>()
-        locations?.sortedByDescending { it.time }?.let { it.map {result -> locationsItemViewList.add(SearchLocationItemView(result, itemClickCallback)) } }
+        locations?.let { it.map {result -> locationsItemViewList.add(SearchLocationItemView(result, itemClickCallback)) } }
         return locationsItemViewList
     }
 }
