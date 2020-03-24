@@ -7,7 +7,6 @@ import com.spdigital.seekweather.network.Resource
 import com.spdigital.seekweather.extensions.toSingleEvent
 import com.spdigital.seekweather.model.search.LocationEntity
 import com.spdigital.seekweather.model.search.LocationModel
-import com.spdigital.seekweather.model.search.ResultModel
 import com.spdigital.seekweather.usecase.LocationUseCaseImpl
 import com.spdigital.seekweather.view.ListItemModel
 import kotlinx.coroutines.Dispatchers
@@ -64,7 +63,7 @@ class SearchLocationViewModelImpl(private val locationUseCaseImpl: LocationUseCa
         return {
             if (it != null && it is LocationEntity) {
                 viewModelScope.launch {
-                    locationUseCaseImpl.saveToLocalCache(it)
+                    locationUseCaseImpl.saveLocationToLocalCache(it)
                 }
                 navigateLiveData.value = it.areaName.filterNull()
             }

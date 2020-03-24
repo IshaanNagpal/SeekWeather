@@ -4,12 +4,11 @@ import com.spdigital.seekweather.extensions.getLocationEntity
 import com.spdigital.seekweather.model.search.*
 import com.spdigital.seekweather.network.Resource
 import com.spdigital.seekweather.repository.LocationRepositoryImpl
+import com.spdigital.seekweather.utility.CACHE_SIZE
 import com.spdigital.seekweather.view.ListItemModel
 import com.spdigital.seekweather.view.SearchLocationItemView
 
 class LocationUseCaseImpl(private val locationRepositoryImpl: LocationRepositoryImpl): LocationUseCase {
-
-     private val CACHE_SIZE = 10
 
     override suspend fun getLocation(query: String?): Resource<LocationModel> {
         return locationRepositoryImpl.fetchLocation(LocationRequestData(query ?:""))
@@ -24,7 +23,7 @@ class LocationUseCaseImpl(private val locationRepositoryImpl: LocationRepository
         return locationsItemViewList
     }
 
-    override suspend fun saveToLocalCache(resultModel: LocationEntity) {
+    override suspend fun saveLocationToLocalCache(resultModel: LocationEntity) {
         val cachedLocations = locationRepositoryImpl.getCachedLocations()
         if(cachedLocations.size >= CACHE_SIZE) {
             cachedLocations.sortByDescending { it.time }
