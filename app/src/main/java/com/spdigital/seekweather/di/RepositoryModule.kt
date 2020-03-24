@@ -7,6 +7,6 @@ import com.spdigital.seekweather.repository.WeatherDetailRepositoryImpl
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single { LocationRepositoryImpl(get()) }
+    single { LocationRepositoryImpl(get(), get()) }
     single { WeatherDetailRepositoryImpl(get()) }
 }

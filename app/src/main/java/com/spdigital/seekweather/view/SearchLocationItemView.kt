@@ -2,12 +2,12 @@ package com.spdigital.seekweather.view
 
 import com.sample.gitrepos.extensions.filterNull
 import com.spdigital.seekweather.R
-import com.spdigital.seekweather.model.search.ResultModel
+import com.spdigital.seekweather.model.search.LocationEntity
 import java.lang.StringBuilder
 
 class SearchLocationItemView(
-    private val resultModel: ResultModel?,
-    private val itemClickCallback: (ResultModel?) -> Unit
+    private val locationEntity: LocationEntity?,
+    private val itemClickCallback: (LocationEntity?) -> Unit
 ) : ListItemModel {
 
     val location = getFormattedLocation()
@@ -15,14 +15,14 @@ class SearchLocationItemView(
     private fun getFormattedLocation(): String {
 
         val strBuilder = StringBuilder()
-        if(resultModel?.areaName?.get(0)?.value.filterNull().trim().isNotEmpty()) {
-            strBuilder.append(resultModel?.areaName?.get(0)?.value)
+        if(locationEntity?.areaName.filterNull().trim().isNotEmpty()) {
+            strBuilder.append(locationEntity?.areaName)
         }
-        if(resultModel?.region?.get(0)?.value.filterNull().trim().isNotEmpty()) {
-            strBuilder.append(", " + resultModel?.region?.get(0)?.value)
+        if(locationEntity?.region.filterNull().trim().isNotEmpty()) {
+            strBuilder.append(", " + locationEntity?.region)
         }
-        if(resultModel?.country?.get(0)?.value.filterNull().trim().isNotEmpty()) {
-            strBuilder.append(", " + resultModel?.country?.get(0)?.value)
+        if(locationEntity?.country.filterNull().trim().isNotEmpty()) {
+            strBuilder.append(", " + locationEntity?.country)
         }
         return strBuilder.toString()
     }
@@ -33,11 +33,11 @@ class SearchLocationItemView(
     }
 
     fun invokeItemClick() {
-        itemClickCallback.invoke(resultModel)
+        itemClickCallback.invoke(locationEntity)
     }
 
     override fun data(): Any? {
-        return resultModel
+        return locationEntity
     }
 
 

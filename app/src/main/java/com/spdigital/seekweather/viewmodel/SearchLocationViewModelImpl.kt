@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.sample.gitrepos.extensions.filterNull
 import com.spdigital.seekweather.network.Resource
 import com.spdigital.seekweather.extensions.toSingleEvent
+import com.spdigital.seekweather.model.search.LocationEntity
 import com.spdigital.seekweather.model.search.LocationModel
 import com.spdigital.seekweather.model.search.ResultModel
 import com.spdigital.seekweather.usecase.LocationUseCaseImpl
@@ -52,10 +53,21 @@ class SearchLocationViewModelImpl(private val locationUseCaseImpl: LocationUseCa
         }
     }
 
+    override fun getRecentlySearchedLocations() {
+        viewModelScope.launch {
+            locationsLiveData.value = locationUseCaseImpl.mapRecentlySearchedLocationToListItem(locationUseCaseImpl.getRecentlySearchedLocations(), getItemClickCallback())
+            setSuccess()
+        }
+    }
+
     private fun getItemClickCallback(): (Any?) -> Unit {
         return {
-            if (it != null && it is ResultModel)
-                navigateLiveData.value = it.areaName?.get(0)?.value.filterNull()
+            if (it != null && it is LocationEntity) {
+                viewModelScope.launch {
+                    locationUseCaseImpl.saveToLocalCache(it)
+                }
+                navigateLiveData.value = it.areaName.filterNull()
+            }
         }
     }
 

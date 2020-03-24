@@ -7,4 +7,5 @@ interface SearchLocationViewModel {
     fun observeForLocationsList(): MutableLiveData<List<ListItemModel>>
     fun observeForNavigator(): MutableLiveData<String>
     fun getSearchedLocation(newText: String?)
+    fun getRecentlySearchedLocations()
 }

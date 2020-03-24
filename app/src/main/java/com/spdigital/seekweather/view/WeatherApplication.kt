@@ -1,11 +1,7 @@
 package com.spdigital.seekweather.view
 
 import androidx.multidex.MultiDexApplication
-import com.spdigital.seekweather.di.networkModule
-import com.spdigital.seekweather.di.repositoryModule
-import com.spdigital.seekweather.di.viewModelModule
-import com.spdigital.seekweather.di.apiModule
-import com.spdigital.seekweather.di.usecaseModule
+import com.spdigital.seekweather.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
@@ -17,7 +13,7 @@ class WeatherApplication : MultiDexApplication() {
 
         startKoin {
             androidContext(this@WeatherApplication)
-            modules(listOf(viewModelModule, usecaseModule, repositoryModule, networkModule, apiModule))
+            modules(listOf(viewModelModule, usecaseModule, repositoryModule, networkModule, apiModule, dbModule))
         }
 
 

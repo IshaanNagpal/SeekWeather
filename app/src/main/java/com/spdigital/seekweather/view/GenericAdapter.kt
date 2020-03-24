@@ -72,6 +72,11 @@ open class GenericAdapter<T>(private var list: List<T>) : ListAdapter<T, Generic
         notifyDataSetChanged()
     }
 
+    fun reset() {
+        list = emptyList()
+        notifyDataSetChanged()
+    }
+
     private fun MutableList<T>.replaceItems(startIndex: Int, list: List<T>): MutableList<T> {
         val changeList = this.dropLast(size - 1).toMutableList()
         changeList.addAll(startIndex, list)
