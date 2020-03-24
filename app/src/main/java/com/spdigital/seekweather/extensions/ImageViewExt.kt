@@ -3,7 +3,6 @@ package com.spdigital.seekweather.extensions
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.sample.gitrepos.extensions.filterNull
 import com.spdigital.seekweather.R
 
@@ -19,12 +18,11 @@ private fun <T> ImageView.loadCircularImage(
     Glide.with(context)
         .load(model)
         .placeholder(placeholder)
-        .apply(RequestOptions.circleCropTransform())
         .into(this)
 }
 
 
 @BindingAdapter(value = ["imageUrl", "defaultImage"], requireAll = false)
 fun ImageView.loadImageFromUrl(imageSource: String?, default: Int?) {
-    urImageCircular(imageSource.filterNull(), default ?: R.drawable.ic_launcher_foreground)
+    urImageCircular(imageSource.filterNull(), default ?: R.drawable.ic_launcher_background)
 }

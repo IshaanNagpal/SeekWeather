@@ -24,6 +24,16 @@ fun String?.filterNull(defaultValue: String = ""): String {
     return this ?: defaultValue
 }
 
+fun String?.appendDegreeCelcius(): String {
+    val strBuilder =  StringBuilder(this.filterNull())
+    return strBuilder.append("\u2103").toString()
+}
+
+fun String?.appendDegreeFahreneits(): String {
+    val strBuilder =  StringBuilder(this.filterNull())
+    return strBuilder.append("\u2109").toString()
+}
+
 fun List<String>?.getCommaSeparatedString(): String {
 
     var strBuilder = StringBuilder()

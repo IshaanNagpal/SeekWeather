@@ -4,6 +4,8 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.sample.gitrepos.extensions.appendDegreeCelcius
+import com.sample.gitrepos.extensions.appendDegreeFahreneits
 import com.sample.gitrepos.extensions.filterNull
 import com.spdigital.seekweather.extensions.toSingleEvent
 import com.spdigital.seekweather.model.weather.WeatherDataModel
@@ -21,8 +23,9 @@ class WeatherDetailViewModelImpl(private val useCaseImpl: WeatherUseCaseImpl) : 
     var tempInCelcius = ObservableField<String>()
     var tempInFahreneits = ObservableField<String>()
     var humidity = ObservableField<String>()
+    var weatherImageUrl = ObservableField<String>()
 
-    private val currentWeatherLiveData by lazy { MutableLiveData<List<ListItemModel>>().toSingleEvent() }
+    private val currentWeatherLiveData by lazy { MutableLiveData<WeatherDataModel>().toSingleEvent() }
 
     override fun getWeatherDetails(location: String) {
 
@@ -34,9 +37,11 @@ class WeatherDetailViewModelImpl(private val useCaseImpl: WeatherUseCaseImpl) : 
                     locationName.set(location)
                     val currentCondition = weatherResource.data?.data?.currentCondition?.get(0)
                     weather.set(currentCondition?.weatherDesc?.get(0)?.value.filterNull())
-                    tempInCelcius.set(currentCondition?.tempC.filterNull()+" degree Celcius")
-                    tempInFahreneits.set(currentCondition?.tempF.filterNull()+ "degree Fahreneits")
+                    tempInCelcius.set(currentCondition?.tempC.filterNull().appendDegreeCelcius())
+                    tempInFahreneits.set(currentCondition?.tempF.filterNull().appendDegreeFahreneits())
                     humidity.set(currentCondition?.humidity.filterNull()+"% Humidity")
+//                    weatherImageUrl.set(currentCondition?.weatherIconUrl?.get(0)?.value.filterNull())
+                    currentWeatherLiveData.value = weatherResource?.data?.data
                 }
                 Resource.Status.ERROR -> {
                 }
@@ -45,6 +50,6 @@ class WeatherDetailViewModelImpl(private val useCaseImpl: WeatherUseCaseImpl) : 
     }
 
     override fun getWeatherLiveData(): LiveData<WeatherDataModel> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return currentWeatherLiveData
     }
 }
