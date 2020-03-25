@@ -39,6 +39,16 @@ android {
         }
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+//        unitTests.includeAndroidResources = true
+    }
+
+    sourceSets {
+        androidTest.java.srcDirs += "src/androidTest/java"
+        test.java.srcDirs += "src/test/java"
+    }
+
 }
 
 dependencies {

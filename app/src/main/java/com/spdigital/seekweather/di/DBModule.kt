@@ -10,3 +10,10 @@ val dbModule = module {
     single { get<AppDatabase>().locationsDao() }
     single { LocationDaoHandlerImpl(get()) }
 }
+
+
+val mockDbModule = module {
+    single { Room.inMemoryDatabaseBuilder(get(), AppDatabase::class.java).allowMainThreadQueries().build() }
+    single { get<AppDatabase>().locationsDao() }
+    single { LocationDaoHandlerImpl(get()) }
+}

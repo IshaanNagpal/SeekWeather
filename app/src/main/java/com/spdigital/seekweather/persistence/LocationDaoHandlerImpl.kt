@@ -8,7 +8,7 @@ class LocationDaoHandlerImpl(private val locationsDao: LocationsDao) : SearchLoc
     }
 
     override suspend fun isLocationTableEmpty(): Boolean {
-        return !locationsDao.getAllCachedLocations().isNullOrEmpty()
+        return locationsDao.getAllCachedLocations().isNullOrEmpty()
     }
 
     override suspend fun addLocationsIntoDB(locations: List<LocationEntity>?) {

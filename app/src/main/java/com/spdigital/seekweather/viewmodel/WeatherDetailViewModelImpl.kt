@@ -40,7 +40,7 @@ class WeatherDetailViewModelImpl(private val useCaseImpl: WeatherUseCaseImpl) : 
                     tempInCelcius.set(currentCondition?.tempC.filterNull().appendDegreeCelcius())
                     tempInFahreneits.set(currentCondition?.tempF.filterNull().appendDegreeFahreneits())
                     humidity.set(currentCondition?.humidity.filterNull()+"% Humidity")
-//                    weatherImageUrl.set(currentCondition?.weatherIconUrl?.get(0)?.value.filterNull())
+                    weatherImageUrl.set(currentCondition?.weatherIconUrl?.get(0)?.value.filterNull())
                     currentWeatherLiveData.value = weatherResource?.data?.data
                 }
                 Resource.Status.ERROR -> {
