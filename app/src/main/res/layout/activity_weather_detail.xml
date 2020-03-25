@@ -26,18 +26,20 @@
             android:background="@android:color/white">
 
             <LinearLayout
+                android:id="@+id/parent_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/activityPadding"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/weatherImage"
+                    android:id="@+id/weather_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/location_name_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{viewmodel.locationName}"
@@ -51,21 +53,19 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/seaprator" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/weather_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/activityPadding"
                     android:text="@{viewmodel.weather}"
                     android:textSize="16sp"
                     tools:text="Cloudy " />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/celcius_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -74,6 +74,7 @@
                     tools:text="18 degrees celcius" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fahraneit_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -83,6 +84,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/humidity_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
