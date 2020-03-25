@@ -1,7 +1,9 @@
 package com.spdigital.seekweather.viewmodel
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.spdigital.seekweather.extensions.toSingleEvent
 
 open class BaseViewModel() : ViewModel() {
 
@@ -14,7 +16,6 @@ open class BaseViewModel() : ViewModel() {
     fun isLoadingState(): ObservableField<Boolean> = loadingStateLiveData
     fun isSuccessState(): ObservableField<Boolean> = successStateLiveData
     fun isErrorState(): ObservableField<Boolean> = errorStateLiveData
-
 
     fun setSuccess() {
         loadingStateLiveData.set(false)

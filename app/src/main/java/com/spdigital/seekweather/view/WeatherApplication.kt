@@ -13,7 +13,7 @@ class WeatherApplication : MultiDexApplication() {
 
         startKoin {
             androidContext(this@WeatherApplication)
-            modules(listOf(viewModelModule, usecaseModule, repositoryModule, networkModule, apiModule, dbModule))
+            modules(listOf(viewModelModule, usecaseModule, repositoryModule, networkModule, apiModule, dbModule, utilityModule))
         }
 
 

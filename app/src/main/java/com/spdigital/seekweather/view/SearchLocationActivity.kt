@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
+import com.sample.gitrepos.extensions.filterNull
 import com.spdigital.seekweather.R
 import com.spdigital.seekweather.databinding.ActivityMainBinding
 import com.spdigital.seekweather.extensions.setCharacterLimitedQuery
@@ -38,6 +39,12 @@ class SearchLocationActivity : BaseActivity() {
 
         searchLocationViewModelImpl.observeForNavigator().observe(this, Observer {
             navigateToDetailActivity(it)
+        })
+
+        searchLocationViewModelImpl.observeForRetry().observe(this, Observer {
+            if(it) {
+                searchLocationViewModelImpl.getSearchedLocation(location_searchview.query.toString().filterNull())
+            }
         })
     }
 

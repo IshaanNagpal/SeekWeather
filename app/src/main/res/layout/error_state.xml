@@ -63,6 +63,7 @@
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="15sp"
         app:cornerRadius="4dp"
+        android:onClick="@{() -> viewModel.retry()}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -17,6 +17,7 @@ class SearchLocationViewModelImpl(private val locationUseCaseImpl: LocationUseCa
     BaseViewModel(), SearchLocationViewModel {
     private val locationsLiveData by lazy { MutableLiveData<List<ListItemModel>>().toSingleEvent() }
     private val navigateLiveData by lazy { MutableLiveData<String>().toSingleEvent() }
+    private val retryLiveData by lazy { MutableLiveData<Boolean>().toSingleEvent() }
 
     override fun observeForLocationsList(): MutableLiveData<List<ListItemModel>> {
         return locationsLiveData
@@ -24,6 +25,10 @@ class SearchLocationViewModelImpl(private val locationUseCaseImpl: LocationUseCa
 
     override fun observeForNavigator(): MutableLiveData<String> {
         return navigateLiveData
+    }
+
+    override fun observeForRetry(): MutableLiveData<Boolean> {
+        return retryLiveData
     }
 
     override fun getSearchedLocation(query: String?) {
@@ -55,6 +60,10 @@ class SearchLocationViewModelImpl(private val locationUseCaseImpl: LocationUseCa
             locationsLiveData.value = locationUseCaseImpl.mapRecentlySearchedLocationToListItem(locationUseCaseImpl.getSortedRecentlySearchedLocations(), getItemClickCallback())
             setSuccess()
         }
+    }
+
+    override fun retry() {
+        retryLiveData.value = true
     }
 
     private fun getItemClickCallback(): (Any?) -> Unit {
