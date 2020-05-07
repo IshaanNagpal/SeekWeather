@@ -20,7 +20,7 @@ import org.junit.runner.RunWith
 class WeatherDetailActivityTest {
 
     @get: Rule
-    val activityTestRule = ActivityTestRule<WeatherDetailActivity>(WeatherDetailActivity::class.java, true, false)
+    val activityTestRule = ActivityTestRule(WeatherDetailActivity::class.java, true, false)
 
 
     @Before
