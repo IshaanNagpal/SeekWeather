@@ -20,7 +20,7 @@ import org.junit.runner.RunWith
 class LocationsListActivityTest {
 
     @get: Rule
-    val activityTestRule = ActivityTestRule<SearchLocationActivity>(SearchLocationActivity::class.java, true, false)
+    val activityTestRule = ActivityTestRule(SearchLocationActivity::class.java, true, false)
 
 
     @Before
