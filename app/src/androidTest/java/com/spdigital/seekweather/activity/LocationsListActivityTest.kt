@@ -22,7 +22,6 @@ class LocationsListActivityTest {
     @get: Rule
     val activityTestRule = ActivityTestRule(SearchLocationActivity::class.java, true, false)
 
-
     @Before
     fun beforeEach() {
         activityTestRule.launchActivity(Intent())
